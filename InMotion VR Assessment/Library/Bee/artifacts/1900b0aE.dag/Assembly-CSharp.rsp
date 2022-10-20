@@ -375,9 +375,11 @@
 "Assets/[Project]/Scripts/Entities/Enemy_SmallShip.cs"
 "Assets/[Project]/Scripts/Entities/Object.cs"
 "Assets/[Project]/Scripts/Entities/Player.cs"
+"Assets/[Project]/Scripts/ObjectPooler.cs"
 "Assets/[Project]/Scripts/PlayerMovement.cs"
 "Assets/[Project]/Scripts/PlayerShooting.cs"
 "Assets/[Project]/Scripts/Projectile.cs"
+"Assets/[Project]/Scripts/ScrollingBackground.cs"
 -langversion:9.0
 
 /deterministic

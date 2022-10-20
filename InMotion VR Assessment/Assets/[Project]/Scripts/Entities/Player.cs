@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Object
+namespace NielsDev.Objects
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Player : Object
     {
-        
-    }
+        private ObjectPooler damageEffectPooler = default;
+        // Start is called before the first frame update
+        void Start()
+        {
+            damageEffectPooler = GameObject.Find("DamageEffectsPooler").GetComponent<ObjectPooler>();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        public override void OnDeath()
+        {
+            base.OnDeath();
+            gameObject.SetActive(false);
+            damageEffectPooler.GetNext(0, transform.position, transform.rotation);
+        }
     }
 }
