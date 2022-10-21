@@ -15,7 +15,6 @@ public class ObjectPooler : MonoBehaviour
     private int size;
 
     private int spawnIndex;
-
     private void Start()
     {
         pool = new List<NestedPool>(4);

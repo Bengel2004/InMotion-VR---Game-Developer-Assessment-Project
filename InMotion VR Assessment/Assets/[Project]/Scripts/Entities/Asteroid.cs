@@ -17,7 +17,7 @@ namespace NielsDev.Objects
             renderer.sprite = asteroidSprites[Random.Range(0, asteroidSprites.Length - 1)];
             gameObject.AddComponent<PolygonCollider2D>();
 
-            damageEffectPooler = GameObject.Find("DamageEffectsPooler").GetComponent<ObjectPooler>();
+            damageEffectPooler = GameObject.Find("[DamageEffectsPooler]").GetComponent<ObjectPooler>();
         }
 
         public override void OnDeath()
