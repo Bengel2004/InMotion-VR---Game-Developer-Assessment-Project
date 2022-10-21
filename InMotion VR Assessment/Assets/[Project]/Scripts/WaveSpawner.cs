@@ -6,10 +6,9 @@ public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private int currentRoundsTillNextBoss;
     [SerializeField] private int roundsTillNextBoss;
-    private float minRoundsTillBoss = 3;
-    private float maxRoundsTillBoss = 7;
-
-    [SerializeField] private ObjectPooler enemyShipPool = default;
+    [SerializeField] private float minRoundsTillBoss = 3;
+    [SerializeField] private float maxRoundsTillBoss = 6;
+    private ObjectPooler enemyShipPool = default;
 
     public static WaveSpawner instance = null;
     private EnemySwarm activeSwarm;
@@ -26,6 +25,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
+        enemyShipPool = GetComponent<ObjectPooler>();
         StartCoroutine(SpawnFirstWave());
     }
 
@@ -45,8 +45,8 @@ public class WaveSpawner : MonoBehaviour
     private IEnumerator SpawnFirstWave()
     {
         yield return new WaitForSeconds(1f);
-        GenerateNewSwarm();
         GenerateNextBossEncounter();
+        GenerateNewSwarm();
     }
 
 
@@ -65,7 +65,7 @@ public class WaveSpawner : MonoBehaviour
         else
         {
             //enemyShipPool.GetNext((int)EnemyShipPooler.SmallShipWave, transform.position, Quaternion.identity);
-            enemyShipPool.GetNext(Mathf.RoundToInt(Random.Range(0f, 3f)), transform.position, Quaternion.identity);
+            enemyShipPool.GetNext(Mathf.RoundToInt(Random.Range(0f, 2f)), transform.position, Quaternion.identity);
         }
     }
 
@@ -76,8 +76,8 @@ public class WaveSpawner : MonoBehaviour
     {
         SmallShipWave = 0,
         MediumShipWave = 1,
-        MixedShipWave = 3,
-        BossShipWave = 4
+        MixedShipWave = 2,
+        BossShipWave = 3
     }
 }
 
