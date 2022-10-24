@@ -64,7 +64,6 @@ public class WaveSpawner : MonoBehaviour
         }
         else
         {
-            //enemyShipPool.GetNext((int)EnemyShipPooler.SmallShipWave, transform.position, Quaternion.identity);
             enemyShipPool.GetNext(Mathf.RoundToInt(Random.Range(0f, 2f)), transform.position, Quaternion.identity);
         }
     }

@@ -29,4 +29,9 @@ public class ScoreSystem : MonoBehaviour
         score += scoreValue;
         scoreText.text = "Score " + score;
     }
+
+    public float GetScore()
+    {
+        return score;
+    }
 }

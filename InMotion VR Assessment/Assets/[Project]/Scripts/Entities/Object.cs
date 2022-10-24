@@ -43,7 +43,7 @@ namespace NielsDev.Objects
         /// Enables damage on objects through collision and other behaviour.
         /// </summary>
         /// <param name="collision"></param>
-        public virtual void OnCollisionEnter(Collision collision)
+        public virtual void OnCollisionEnter2D(Collision2D collision)
         {
             NielsDev.Objects.Object tempObject = collision.gameObject.GetComponent<NielsDev.Objects.Object>();
 

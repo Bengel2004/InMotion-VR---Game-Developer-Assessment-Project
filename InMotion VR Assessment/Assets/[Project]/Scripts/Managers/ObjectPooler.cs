@@ -15,7 +15,7 @@ public class ObjectPooler : MonoBehaviour
     private int size;
 
     private int spawnIndex;
-    private void Start()
+    private void Awake()
     {
         pool = new List<NestedPool>(4);
         foreach (GameObject prefab in prefabs)
@@ -24,10 +24,13 @@ public class ObjectPooler : MonoBehaviour
             pool.Add(_temp);
         }
 
-        // pool[currentIndex] = new List<GameObject>(size);
         ObjectPool(size);
     }
 
+    /// <summary>
+    /// Instantiates the pool of objects. Object pooling helps prevent lag.
+    /// </summary>
+    /// <param name="size"></param>
     public void ObjectPool(int size)
     {
         foreach (GameObject prefab in prefabs)
@@ -43,6 +46,13 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Grabs the next object in the object array.
+    /// </summary>
+    /// <param name="_value"></param>
+    /// <param name="_position"></param>
+    /// <param name="_rotation"></param>
+    /// <returns></returns>
     public GameObject GetNext(int _value, Vector3 _position, Quaternion _rotation)
     {
         GameObject obj = pool[_value].nesting[currentIndex];

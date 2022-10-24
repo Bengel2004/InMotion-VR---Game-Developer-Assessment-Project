@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62e79648d2507e43a232da4fe0a9706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementPoints:
-  - {x: 2, y: 0, z: 0}
-  - {x: 7, y: 4, z: 0}
-  - {x: 7, y: -4, z: 0}
-  speed: 4
+  movementPattern:
+  - {fileID: 11400000, guid: c4d7e37cd7181e8438daf1082ced8b87, type: 2}
+  - {fileID: 11400000, guid: 0a37af20902e80b45b24584e0970b858, type: 2}
+  - {fileID: 11400000, guid: 4429ae86075ac4149b41bddcc9ec5ddb, type: 2}
+  - {fileID: 11400000, guid: 4caf6bf08bab6a7429e349764f498c84, type: 2}
 --- !u!114 &839198307152584936
 MonoBehaviour:
   m_ObjectHideFlags: 0

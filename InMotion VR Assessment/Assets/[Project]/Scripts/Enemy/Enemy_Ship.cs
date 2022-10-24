@@ -7,9 +7,11 @@ namespace NielsDev.Objects
     public class Enemy_Ship : Object
     {
         [SerializeField] private EnemyHealthGenerator healthGenerator = new EnemyHealthGenerator();
-        [SerializeField] private float shootDelayTime = 0f;
         [SerializeField] private float rateOfFire = 60;
         private float timestamp;
+
+        private bool canShoot = false;
+
         private SpriteRenderer renderer = default;
 
         [SerializeField] private ParticleSystem[] projectiles = default;
@@ -22,7 +24,7 @@ namespace NielsDev.Objects
         {
             health = healthGenerator.GenerateRandomizedHealth();
             renderer = GetComponent<SpriteRenderer>();
-            timestamp = Time.time + shootDelayTime;
+            timestamp = Time.time;
 
             damageEffectPooler = GameObject.Find("[DamageEffectsPooler]").GetComponent<ObjectPooler>();
             swarmMaster = transform.parent?.GetComponent<EnemySwarm>();
@@ -31,7 +33,7 @@ namespace NielsDev.Objects
         // Update is called once per frame
         void Update()
         {
-            if(Time.time > timestamp)
+            if(Time.time > timestamp && canShoot && SimpleGameManger.GameIsRunning)
             {
                 timestamp = Time.time + (60 / rateOfFire);
                 foreach(ParticleSystem projectile in projectiles)
@@ -39,6 +41,16 @@ namespace NielsDev.Objects
                     projectile.Play();
                 }
             }
+        }
+
+        private void OnBecameVisible()
+        {
+            canShoot = true;
+        }
+
+        private void OnBecameInvisible()
+        {
+            canShoot = false;
         }
 
         /// <summary>
@@ -58,7 +70,8 @@ namespace NielsDev.Objects
         public override void ResetObject()
         {
             base.ResetObject();
-            timestamp = Time.time + shootDelayTime;
+            canShoot = false;
+            timestamp = Time.time;
             health = healthGenerator.GenerateRandomizedHealth();
         }
     }

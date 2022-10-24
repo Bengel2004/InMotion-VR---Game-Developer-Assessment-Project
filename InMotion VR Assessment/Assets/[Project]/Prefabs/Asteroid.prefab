@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e502756c0f7e89c4b98fb317ce73d845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  damage: 10
+  health: 10
+  damage: 50
+  scoreValue: 10
+  minSpeed: 250
+  maxSpeed: 500
   asteroidSprites:
   - {fileID: 21300000, guid: f3017689bd0a654438ea138f59f00ded, type: 3}
   - {fileID: 21300000, guid: 1644bb3484579ba4fbbaec34988dee34, type: 3}
@@ -55,10 +58,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 95e7e7fda1deddb4d98ab2297ebb0864, type: 3}
   - {fileID: 21300000, guid: a4fbf3ca0fd5be1489ce19e93b1076d3, type: 3}
   - {fileID: 21300000, guid: 7e5ea8e3a8bbfe045bdbe04916d6239b, type: 3}
-  - {fileID: 21300000, guid: deda4814972fbbb439c877189b66c2b0, type: 3}
-  - {fileID: 21300000, guid: b7c58363d5d0f29408d23f46d6c51e05, type: 3}
-  - {fileID: 21300000, guid: 68f644efac5a2df4a9a03a30ef3bc8c0, type: 3}
-  - {fileID: 21300000, guid: 92ad50c7f02e5154791cefff1e138870, type: 3}
 --- !u!212 &4985784112506117962
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,4 +130,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

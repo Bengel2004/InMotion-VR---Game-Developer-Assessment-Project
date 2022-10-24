@@ -4,34 +4,37 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Vector3[] movementPoints = default;
+    [SerializeField] private MovementPattern[] movementPattern = default;
+    private MovementPattern currentMovementPattern = default;
     private int currentPoint = 0;
 
-    public float speed = 1.0f;
-    // Start is called before the first frame update
-    void Start()
+    // A new random movement pattern is assigned whenever the object gets respawned.
+    private void OnEnable()
     {
-        
+        currentMovementPattern = movementPattern[Mathf.RoundToInt(Random.Range(0, movementPattern.Length - 1f))];
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        var step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, movementPoints[currentPoint], step);
-
-        if (Vector3.Distance(transform.position, movementPoints[currentPoint]) < 0.001f)
+        if (SimpleGameManger.GameIsRunning) 
         {
-            if(currentPoint + 1 <= movementPoints.Length - 1)
-                currentPoint++;
-            else
-                currentPoint = 0;
+            var step = currentMovementPattern.speed * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, currentMovementPattern.movementPoints[currentPoint], step);
+
+            if (Vector3.Distance(transform.position, currentMovementPattern.movementPoints[currentPoint]) < 0.001f)
+            {
+                if (currentPoint + 1 <= currentMovementPattern.movementPoints.Length - 1)
+                    currentPoint++;
+                else
+                    currentPoint = 0;
+            }
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        foreach(Vector3 movementPoint in movementPoints)
+        foreach(Vector3 movementPoint in currentMovementPattern.movementPoints)
         {
             Gizmos.DrawSphere(movementPoint, 1);
         }
